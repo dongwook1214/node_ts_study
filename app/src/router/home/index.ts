@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction, Router } from "express";
-import * as ctrl from "../../bin/controller/home/ctrl";
+import * as ctrl from "../../../bin/controller/home/ctrl";
 
 const router: Router = express.Router();
 
