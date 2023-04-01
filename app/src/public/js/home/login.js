@@ -4,18 +4,24 @@ const button = document.querySelector("button");
 
 button.addEventListener("click", login);
 
-function login() {
+async function login() {
   const req = {
     id: id.value,
     password: password.value,
   };
-  fetch("/login", {
+  let fetchResponse = await fetch("/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(req),
-  }).then((response) => {
-    console.log(response.json().then((value) => console.log(value)));
   });
+  let responseData = await fetchResponse.json();
+  if (responseData["succeed"]) {
+    alert(responseData["message"]);
+
+    location.href = "/";
+  } else {
+    alert(responseData["message"]);
+  }
 }
