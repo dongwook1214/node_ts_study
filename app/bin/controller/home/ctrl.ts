@@ -1,14 +1,6 @@
 import express, { Request, Response, NextFunction, Router } from "express";
-
-interface LoginResponse {
-  succeed: boolean;
-  message: string;
-}
-
-const user = {
-  id: ["1234"],
-  password: ["1234"],
-};
+import { User } from "../../../src/model/User";
+import { LoginResponse } from "../../../src/model/LoginResponse";
 
 const view = {
   main: (req: Request, res: Response) => {
@@ -21,21 +13,10 @@ const view = {
 
 const process = {
   login: (req: Request, res: Response) => {
-    const [id, password] = [req.body["id"], req.body["password"]];
-    if (
-      user.id.includes(id) &&
-      user.password[user.id.indexOf(req.body["id"])] == password
-    ) {
-      console.log(req.body);
-      const loginResponse: LoginResponse = { succeed: true, message: "굳" };
-      return res.json(loginResponse);
-    } else {
-      const loginResponse: LoginResponse = {
-        succeed: false,
-        message: "아이디 패스워드 오류!",
-      };
-      return res.json(loginResponse);
-    }
+    console.log(req.body);
+    let user: User = new User(req.body["id"], req.body["password"]);
+    let loginResponse: LoginResponse = user.login();
+    return res.json(loginResponse);
   },
 };
 
