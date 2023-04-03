@@ -18,8 +18,6 @@ async function login() {
   });
   let responseData = await fetchResponse.json();
   if (responseData["succeed"]) {
-    alert(responseData["message"]);
-
     location.href = "/";
   } else {
     alert(responseData["message"]);
