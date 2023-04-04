@@ -3,15 +3,20 @@ import { LoginResponse } from "./LoginResponse";
 class User {
   id: string;
   password: string;
+  name?: string;
 
-  constructor(id: string, password: string) {
+  constructor(id: string, password: string, name?: string) {
     this.id = id;
     this.password = password;
+    this.name = name;
   }
   login(): LoginResponse {
     let userStorage: UserStorageMemory = new UserStorageMemory();
-    if (userStorage.isValid(new User(this.id, this.password))) {
-      const loginResponse: LoginResponse = { succeed: true, message: "굳" };
+    if (userStorage.isValid(this)) {
+      const loginResponse: LoginResponse = {
+        succeed: true,
+        message: `${this.name ?? "익명님"} 굳`,
+      };
       return loginResponse;
     } else {
       const loginResponse: LoginResponse = {
