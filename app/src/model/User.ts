@@ -26,6 +26,12 @@ class User {
       return loginResponse;
     }
   }
+  logout(): object {
+    const logoutResponse = {
+      message: "빠이!",
+    };
+    return logoutResponse;
+  }
 }
 
 export { User };
