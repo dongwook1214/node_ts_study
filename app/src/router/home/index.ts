@@ -6,5 +6,6 @@ const router: Router = Router();
 router.get("/", ctrl.view.main);
 router.get("/login", ctrl.view.login);
 router.post("/login", ctrl.process.login);
+router.post("/logout", ctrl.process.logout);
 
 export { router };

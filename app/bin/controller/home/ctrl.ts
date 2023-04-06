@@ -18,6 +18,12 @@ const process = {
     let loginResponse: LoginResponse = user.login();
     return res.json(loginResponse);
   },
+  logout: (req: Request, res: Response) => {
+    console.log(req.body);
+    let user: User = new User(req.body["id"], req.body["password"]);
+    let logoutResponse: object = user.logout();
+    return res.json(logoutResponse);
+  },
 };
 
 export { view, process };

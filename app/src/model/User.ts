@@ -28,7 +28,7 @@ class User {
   }
   logout(): object {
     const logoutResponse = {
-      message: "빠이!",
+      message: `${this.name ?? "익명"} +  빠이!`,
     };
     return logoutResponse;
   }
